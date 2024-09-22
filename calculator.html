@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylecal.css">
+    <title>Calculator</title>
+</head>
+<body>
+    <div class="calculator">
+        <div class="display">
+            <input type="text" id="display" placeholder="0" disabled>
+            <div class="buttons">
+                <button id="clear">C</button>
+                <button id="backspace">DEL</button>
+                <button id="divide">/</button>
+                <button id="multiplication">*</button>
+                <button id="one">1</button>
+                <button id="two">2</button>
+                <button id="three">3</button>
+                <button id="addition">+</button>
+                <button id="four">4</button>
+                <button id="five">5</button>
+                <button id="six">6</button>
+                <button id="subtraction">-</button>
+                <button id="seven">7</button>
+                <button id="eight">8</button>
+                <button id="nine">9</button>
+                <button id="equals">=</button>
+                <button id="zero">0</button>
+            </div> 
+        </div>
+    </div>
+    <script>
+        let input = document.getElementById('display');
+        let buttons = document.querySelectorAll('button');
+
+        let string = '';
+        buttons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                if (e.target.innerHTML === 'C') {
+                    string = "";
+                    input.value = string;
+                } else if (e.target.innerHTML === 'DEL') {
+                    string = string.slice(0, -1);
+                    input.value = string;
+                } else if (e.target.innerHTML === '=') {
+                    try {
+                        string = eval(string);
+                        input.value = string;
+                    } catch (error) {
+                        input.value = "Error";
+                    }
+                } else {
+                    string += e.target.innerHTML;
+                    input.value = string;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
